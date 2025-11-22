@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/welcomeScene.unity
+    guid: 41c2e8d1ba8c3554a9e63b5626f72f2c
+  - enabled: 1
+    path: Assets/Scenes/matchcardScene.unity
+    guid: 5b9f36c0d8cb6834b9a10d73d2fbefde
+  - enabled: 1
+    path: Assets/Scenes/matchCardLevel2Scene.unity
+    guid: 9d136788aa926634a92956ffa476e56e
   m_configObjects: {}
