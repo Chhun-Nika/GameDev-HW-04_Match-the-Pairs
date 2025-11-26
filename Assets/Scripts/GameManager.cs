@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
     public CardFlip firstCard;
     public CardFlip secondCard;
     public TMP_Text scoreText;
-    public RectTransform scoreTextRect;      // Assign TMP Text RectTransform here
-    public CardFlip[] allCards;               // Assign all your cards here
+    public RectTransform scoreTextRect;
+    public CardFlip[] allCards;
 
-    public Vector3 centerPosition = Vector3.zero;  // Center position for score text
+    public Vector3 centerPosition = Vector3.zero;
     public float moveDuration = 1f;
 
     private int score = 0;
@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     public GameObject buttonScene1;
     public GameObject buttonScene2;
 
+    // ---------- ADDED SOUND VARIABLES ----------
+    public AudioSource sfxSource;        // The AudioSource that plays SFX
+    public AudioClip matchSound;         // Sound for matching cards
+    public AudioClip unmatchSound;       // Sound for wrong pair
+    // -------------------------------------------
 
     public bool CanSelect()
     {
@@ -48,6 +53,10 @@ public class GameManager : MonoBehaviour
 
         if (firstCard.cardID == secondCard.cardID)
         {
+            // PLAY MATCH SOUND
+            if (sfxSource != null && matchSound != null)
+                sfxSource.PlayOneShot(matchSound);
+
             firstCard.isMatched = true;
             secondCard.isMatched = true;
 
@@ -71,6 +80,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // PLAY UNMATCH SOUND
+            if (sfxSource != null && unmatchSound != null)
+                sfxSource.PlayOneShot(unmatchSound);
+
             firstCard.FlipBack();
             secondCard.FlipBack();
 
@@ -93,9 +106,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MoveScoreTextToCenter()
     {
-        Vector3 startPos = scoreTextRect.localPosition;  // current position
-        Vector3 endPos = new Vector3(0, 160f);                    // center of canvas (adjust if needed)
-        float duration = 1f;                              // animation duration
+        Vector3 startPos = scoreTextRect.localPosition;
+        Vector3 endPos = new Vector3(0, 160f);
+        float duration = 1f;
         float elapsed = 0f;
 
         while (elapsed < duration)
